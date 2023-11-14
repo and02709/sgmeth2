@@ -14,7 +14,7 @@ model.build.SSPCA <- function(Y,X,V,kernel=c("linear","delta")){
   if(kernel=="linear") mod <- lm(y~.,data=df)
   else{
     df$y <- factor(df$y)
-    mod <- nnet::multinom(y~.,data=df)
+    mod <- nnet::multinom(y~.,data=df,trace=F)
   }
   return(mod)
 }
