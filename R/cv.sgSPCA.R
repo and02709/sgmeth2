@@ -82,7 +82,7 @@ cv.sgSPCA <- function(X,Y,npc, n.folds=5, kernel=c("linear","delta"), groups=NUL
   
   if(parallel){ 
     if(mc.method){
-      if(is.null(n.cores)) n.cores <- parallel::detectCores() / 2
+      if(is.null(n.cores)) n.cores <- parallel::detectCores() 
       param.grid.l <- as.list(data.frame(t(param.grid)))
       metric.vec <- unlist(parallel::mclapply(param.grid.l,cv.partition.sparse_group,
                                               df.partition=df.partition,npc=npc,
@@ -91,7 +91,7 @@ cv.sgSPCA <- function(X,Y,npc, n.folds=5, kernel=c("linear","delta"), groups=NUL
                                               niter=niter,trace=trace,
                                               mc.cores = n.cores))
     } else{
-      if(is.null(n.cores)) n.cores <- parallel::detectCores() / 2
+      if(is.null(n.cores)) n.cores <- parallel::detectCores() 
       clust <- parallel::makeCluster(n.cores)
       metric.vec <- parallel::parApply(cl=clust,X=as.matrix(param.grid),1,
                                        cv.partition.sparse_group,
