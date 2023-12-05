@@ -54,10 +54,12 @@ sgSPCA <- function(X,Y,npc, kernel=c("linear","delta"), groups=NULL,
                  kernel=kernel, niter=niter, trace=trace))
   }
   
-  if(alpha==0 && (!is.null(groups) && !is.null(nonzero.groups))){
-    return(sgmeth2::gSPCA(X=X,Y=Y,npc=npc, kernel=kernel, groups=groups, 
+  if(alpha==0){
+    if(!is.null(groups) && !is.null(nonzero.groups)){
+      return(sgmeth2::gSPCA(X=X,Y=Y,npc=npc, kernel=kernel, groups=groups, 
                  nonzero.groups=nonzero.groups, ind.names=ind.names, 
                  niter=niter, trace=trace) )
+      }
   }
   
   # Determine number of unique groups
