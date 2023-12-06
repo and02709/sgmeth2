@@ -47,7 +47,7 @@ sgSIMPLS <- function(X,Y,npc, kernel=c("linear","delta"), groups=NULL, nonzero.g
     return(sgmeth2::Ssimpls(X=X,Y=Y,npc=npc,nonzero.loadings = nonzero.groups, sparsity.type="loadings", kernel=kernel, niter=niter, trace=trace))
   }
   
-  if(!is.null(groups) && !is.null(nonzero.groups) && alpha==0){
+  if(alpha==0 && !is.null(groups) && !is.null(nonzero.groups)){
     return(sgmeth2::gSIMPLS(X=X,Y=Y,npc=npc, kernel=kernel, groups=groups, 
                    nonzero.groups=nonzero.groups, ind.names=ind.names, 
                    niter=niter, trace=trace) )
