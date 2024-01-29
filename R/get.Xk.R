@@ -19,7 +19,11 @@ get.Xk <- function(X,u,groups,unique.group,num.group){
     Xtu.df <- data.frame(index,Xtu)
     
     Xtu.list <- c(Xtu.list,list(Xtu.df))
-    Xk.col <- ncol(X.k)
+    if(is.null(ncol(X.k))){
+      Xk.col <- 1
+      } else{
+      Xk.col <- ncol(X.k)
+      }
     Xtu.vec[k] <- sgmeth2::l2n(Xtu)
     Xk.col.vec[k] <- Xk.col
   }
