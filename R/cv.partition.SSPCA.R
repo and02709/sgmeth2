@@ -19,10 +19,10 @@ cv.partition.SSPCA <- function(arg.sparse, df.partition, npc, n.folds, sparsity.
   if(sparsity.type=="loadings") nonzero.loadings <- arg.sparse[[2]]
   else sumabsv <- arg.sparse[[2]]
   
-  xtrain <- df.partition |> dplyr::filter(.folds!=test.index) |> dplyr::ungroup() |> dplyr::select(-c(y,.folds)) |> as.matrix()
-  xtest <- df.partition |> dplyr::filter(.folds==test.index) |> dplyr::ungroup() |> dplyr::select(-c(y,.folds)) |> as.matrix()
-  ytrain <- df.partition |> dplyr::filter(.folds!=test.index) |> dplyr::ungroup() |> dplyr::select(y) |> as.matrix()
-  ytest <- df.partition |> dplyr::filter(.folds==test.index) |> dplyr::ungroup() |> dplyr::select(y) |> as.matrix()
+  xtrain <- df.partition |> dplyr::filter(.folds!=test.index) |> dplyr::ungroup() |> dplyr::select(-c(y,.folds)) |> as.numeric() |> as.matrix()
+  xtest <- df.partition |> dplyr::filter(.folds==test.index) |> dplyr::ungroup() |> dplyr::select(-c(y,.folds)) |> as.numeric() |> as.matrix()
+  ytrain <- df.partition |> dplyr::filter(.folds!=test.index) |> dplyr::ungroup() |> dplyr::select(y) |> as.numeric() |> as.matrix()
+  ytest <- df.partition |> dplyr::filter(.folds==test.index) |> dplyr::ungroup() |> dplyr::select(y) |> as.numeric() |> as.matrix()
   
   xmeans <- colMeans(xtrain)
   xtrain <- t(apply(xtrain, 1, function(x) x-xmeans))
