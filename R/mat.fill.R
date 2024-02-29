@@ -1,5 +1,5 @@
 #' cross validation function for sparse supervised PCA
-#' @param param.grid
+#' @param param.grid data frame containing parameters
 #' @param n.sp number of sparse parameter options
 #' @param n.folds number of folds
 #' @keywords Supervised Princpal Component Analysis
